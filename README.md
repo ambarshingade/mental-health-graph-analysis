@@ -1,4 +1,4 @@
-#  Mental Health Graph Analysis 
+#  A Graph-Based Approach for Identifying At-Risk Users in Mental Health Communities Using Google PageRank
 
 ## **🔍 Project Overview**
 This project analyzes **mental health communities** by combining **Google PageRank** with **sentiment analysis** to **identify at-risk users**.  
