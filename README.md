@@ -13,7 +13,7 @@ The goal is to:
 
 ---
 
-## **🛠 Workflow Explanation**
+## **Workflow Explanation**
 ### **🔹 Step 1: Data Preprocessing (`data_preprocessing.py`)**
 -  Loads raw mental health data (Depression, Anxiety, PTSD, etc.).
 -  Cleans missing values and pre-processes text features.
