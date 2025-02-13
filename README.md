@@ -70,7 +70,7 @@ The goal is to:
 
 ---
 
-## ** Key Results & Findings**
+##  Key Results & Findings
 1️ **Graph Analysis Shows Key Influencers**  
 - Some users have **high PageRank scores**, making them **highly influential**.  
 - Community detection reveals **clusters of users who interact frequently**.
