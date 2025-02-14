@@ -47,8 +47,8 @@ for file in datasets:
         
         # Save processed file
         df.to_csv(processed_file_path, index=False)
-        print(f"✅ Processed and saved: {processed_file_path}")
+        print(f"Processed and saved: {processed_file_path}")
     else:
-        print(f"❌ File not found: {raw_file_path}")
+        print(f"File not found: {raw_file_path}")
 
-print("🎉 Processing Complete! 24 files processed.")
+print("Processing Complete! 24 files processed.")
