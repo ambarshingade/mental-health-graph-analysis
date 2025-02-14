@@ -40,11 +40,21 @@ subG = G_filtered.subgraph(list(G_filtered.nodes)[:num_nodes])
 # Apply an improved layout
 pos = nx.spring_layout(subG, k=0.3, seed=42)  # Adjust k to control spacing
 
-# Draw the filtered graph
-plt.figure(figsize=(12, 8))
-nx.draw(subG, pos, node_size=50, edge_color="gray", alpha=0.6, with_labels=False)
+# Compute PageRank for node coloring
+pagerank_scores = nx.pagerank(G_filtered)
 
-plt.title("Filtered Graph Visualization (Only Strongly Connected Users)")
+# Normalize PageRank values for coloring
+min_pr, max_pr = min(pagerank_scores.values()), max(pagerank_scores.values())
+node_colors = [(pagerank_scores[node] - min_pr) / (max_pr - min_pr) for node in subG.nodes]
+
+# Draw the filtered graph with PageRank-based coloring
+plt.figure(figsize=(12, 8))
+nx.draw(
+    subG, pos, node_size=50, node_color=node_colors, cmap=plt.cm.viridis, 
+    edge_color="gray", alpha=0.6, with_labels=False
+)
+
+plt.title("Filtered Graph Visualization with PageRank Coloring")
 plt.savefig("../results/fixed_filtered_graph.png", dpi=300)
 
 print("Graph with strong connections saved as fixed_filtered_graph.png")
