@@ -6,7 +6,7 @@ import pickle
 
 # Set paths
 PROCESSED_DATA_DIR = "/home/ambarshingade/mental_health_analysis/data/processed"
-SENTIMENT_FILE = "../results/user_sentiment_scores.csv"  # Ensure this file exists
+SENTIMENT_FILE = "../results/at_risk_users.csv"
 OUTPUT_IMAGE = "../results/graph_with_sentiment.png"
 
 # Load the graph
@@ -28,7 +28,7 @@ pagerank_scores = nx.pagerank(G_combined)
 
 # Load sentiment scores
 sentiment_df = pd.read_csv(SENTIMENT_FILE)  # Ensure sentiment data exists
-sentiment_dict = dict(zip(sentiment_df["user"], sentiment_df["sentiment"]))
+sentiment_dict = dict(zip(sentiment_df["author"], sentiment_df["sentiment"]))
 
 # Assign sentiment to nodes (default 0 for missing users)
 sentiment_scores = {node: sentiment_dict.get(node, 0) for node in G_combined.nodes}
@@ -39,7 +39,7 @@ node_colors = [(sentiment_scores[node] - min_sent) / (max_sent - min_sent) for n
 
 # Normalize PageRank for node sizing
 min_pr, max_pr = min(pagerank_scores.values()), max(pagerank_scores.values())
-node_sizes = [(pagerank_scores[node] - min_pr) / (max_pr - min_pr) * 500 for node in G_combined.nodes]
+node_sizes = [(pagerank_scores.get(node, 0.01) - min_pr) / (max_pr - min_pr) * 500 for node in subG.nodes]
 
 # Take a smaller subgraph for visualization
 num_nodes = min(1000, len(G_combined.nodes))
