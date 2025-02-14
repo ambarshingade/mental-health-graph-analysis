@@ -20,7 +20,7 @@ for file in graph_files:
         G = pickle.load(f)
         G_combined = nx.compose(G_combined, G)  # Merge graphs
 
-print(f"✅ Merged {len(graph_files)} graphs into one large graph with {len(G_combined.nodes)} nodes and {len(G_combined.edges)} edges.")
+print(f"Merged {len(graph_files)} graphs into one large graph with {len(G_combined.nodes)} nodes and {len(G_combined.edges)} edges.")
 
 # Apply Google PageRank algorithm
 pagerank_scores = nx.pagerank(G_combined)
@@ -32,7 +32,7 @@ df_pagerank = pd.DataFrame(
 
 # Save the user-based PageRank
 df_pagerank.to_csv("../results/user_pagerank_scores.csv", index=False)
-print("✅ User-based PageRank scores saved in results/user_pagerank_scores.csv")
+print("User-based PageRank scores saved in results/user_pagerank_scores.csv")
 
 
 # Sort users by influence (highest scores first)
@@ -42,7 +42,7 @@ top_users = sorted(pagerank_scores.items(), key=lambda x: x[1], reverse=True)[:2
 df_pagerank = pd.DataFrame(top_users, columns=["User", "PageRank"])
 df_pagerank.to_csv("../results/pagerank_scores.csv", index=False)
 
-print("✅ PageRank computed! Top 20 Influential Users saved in results/pagerank_scores.csv")
+print("PageRank computed! Top 20 Influential Users saved in results/pagerank_scores.csv")
 
 
 
@@ -56,4 +56,4 @@ partition = community.best_partition(G_undirected)  # Detect communities
 df_communities = pd.DataFrame(partition.items(), columns=["User", "Community"])
 df_communities.to_csv("../results/community_assignments.csv", index=False)
 
-print("✅ Community Detection Completed! Results saved in results/community_assignments.csv")
+print("Community Detection Completed! Results saved in results/community_assignments.csv")

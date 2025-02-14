@@ -12,7 +12,7 @@ files = [f for f in os.listdir(PROCESSED_DATA_DIR) if f.endswith("_cleaned.csv")
 
 at_risk_users = []
 
-print("🔍 Performing sentiment analysis on user posts...")
+print("Performing sentiment analysis on user posts...")
 
 for file in files:
     file_path = os.path.join(PROCESSED_DATA_DIR, file)
@@ -37,4 +37,4 @@ df_at_risk_all = pd.concat(at_risk_users, ignore_index=True)
 at_risk_file = os.path.join(RESULTS_DIR, "at_risk_users.csv")
 df_at_risk_all.to_csv(at_risk_file, index=False)
 
-print(f"✅ At-risk users identified and saved in {at_risk_file}")
+print(f"At-risk users identified and saved in {at_risk_file}")

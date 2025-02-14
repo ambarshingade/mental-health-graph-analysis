@@ -16,9 +16,9 @@ if os.path.exists(at_risk_file) and os.path.exists(pagerank_file):
 
     # Ensure column names are correct
     if "author" not in df_at_risk.columns:
-        raise KeyError("❌ `at_risk_users.csv` is missing the `author` column.")
+        raise KeyError("`at_risk_users.csv` is missing the `author` column.")
     if "author" not in df_pagerank.columns:
-        raise KeyError("❌ `user_pagerank_scores.csv` is missing the `author` column.")
+        raise KeyError("`user_pagerank_scores.csv` is missing the `author` column.")
 
     # Merge both datasets based on users
     df_critical_users = df_at_risk.merge(
@@ -29,8 +29,8 @@ if os.path.exists(at_risk_file) and os.path.exists(pagerank_file):
     critical_users_file = os.path.join(RESULTS_DIR, "critical_at_risk_users.csv")
     df_critical_users.to_csv(critical_users_file, index=False)
 
-    print(f"✅ Critical At-Risk Users (High PageRank + Negative Sentiment) saved in {critical_users_file}")
+    print(f"Critical At-Risk Users (High PageRank + Negative Sentiment) saved in {critical_users_file}")
 
 else:
-    print("❌ Missing required files: at_risk_users.csv or user_pagerank_scores.csv")
+    print("Missing required files: at_risk_users.csv or user_pagerank_scores.csv")
     print("Make sure you have run sentiment analysis and PageRank computation first.")
